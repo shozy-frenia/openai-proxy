@@ -5,17 +5,17 @@ const client = new OpenAI({
 });
 
 export default async function handler(req, res) {
-  // ✅ СНАЧАЛА ДОБАВЛЯЕМ CORS-ЗАГОЛОВКИ
+  // CORS-заголовки
   res.setHeader("Access-Control-Allow-Origin", "https://shozy-frenia.github.io");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-  // ✅ ОБРАБАТЫВАЕМ preflight-запрос (OPTIONS)
+  // Обработка preflight-запроса
   if (req.method === "OPTIONS") {
     return res.status(200).end();
   }
 
-  // ✅ ТЕПЕРЬ проверяем POST-запросы
+  // Проверка метода
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
@@ -39,7 +39,6 @@ export default async function handler(req, res) {
       messages: messages,
       stream: false,
     });
-
     return res.status(200).json(completion);
   } catch (error) {
     console.error("OpenAI API error:", error);
