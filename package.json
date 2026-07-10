@@ -1,8 +1,7 @@
 {
   "name": "openai-proxy",
   "version": "1.0.0",
-  "description": "OpenAI API proxy for NeuroCheck.ai",
-  "main": "api/proxy.js",
+  "type": "module",
   "dependencies": {
     "openai": "^4.0.0"
   }
